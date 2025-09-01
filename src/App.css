@@ -1661,8 +1661,6 @@ main.container {
 .stat-card.revenue .icon-container { background-color: #00712f30; color: var(--green); }
 .stat-card.paid-count .icon-container { background-color: #f1c40f30; color: var(--yellow); }
 
-/* Stîlê tekstê (nirx û nav) */
-
 .text-container .value {
     font-size: 22px;
     font-weight: 700;
@@ -1673,8 +1671,6 @@ main.container {
     font-size: 14px;
     color: var(--text-dark);
 }
-
-/* Stîlê Konteynera Grafî */
 
 .chart-container {
     background-color: var(--primary);
@@ -1689,10 +1685,6 @@ main.container {
     margin-bottom: 15px;
     color: var(--text-light);
 }
-
-
-
-/* ========== (DÎZAYNA SUPER PRO) Dashboard ========== */
 
 .dashboard-section {
     background-color: var(--bg-light);
@@ -1710,8 +1702,6 @@ main.container {
     font-weight: 600;
 }
 
-/* Grida sereke ku dashboard-ê dike 2 beş */
-
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -1719,23 +1709,17 @@ main.container {
     align-items: stretch;
 }
 
-/* Stûna Çepê (Hero Cards) */
-
 .hero-stats {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-/* Stûna Rastê (Graf û Kartên Piçûk) */
-
 .side-stats {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-
-/* Stîlê Giştî yê Karta Amarê */
 
 .stat-card {
     background-color: var(--primary);
@@ -1751,8 +1735,6 @@ main.container {
     transform: scale(1.03);
     box-shadow: 0 8px 30px #00000040;
 }
-
-/* Stîlê Hero Cards (Mazin) */
 
 .hero-card {
     padding: 25px;
@@ -1772,8 +1754,6 @@ main.container {
     opacity: 0.5;
 }
 
-/* Stîlê Secondary Cards (Piçûk) */
-
 .secondary-card {
     flex-grow: 1;
 }
@@ -1787,24 +1767,31 @@ main.container {
     color: var(--text-light);
 }
 
-/* Konteynera du kartên piçûk */
-
 .secondary-cards-container {
     display: flex;
     gap: 20px;
 }
 
-/* Rengên Taybet bo her kartê */
+.stat-card.debt {
+    background-image: linear-gradient(135deg, #e94560, #c32a43);
+}
 
-.stat-card.debt { background-image: linear-gradient(135deg, #e94560, #c32a43); }
-.stat-card.revenue { background-image: linear-gradient(135deg, #00712f, #005c26); }
-.stat-card.total { border-bottom: 4px solid var(--blue); }
-.stat-card.paid-count { border-bottom: 4px solid var(--yellow); }
+.stat-card.revenue { 
+    background-image: linear-gradient(135deg, #00712f, #005c26);
+}
 
-/* Stîlê Îkonê */
-.icon-container { color: white; }
+.stat-card.total {
+    border-bottom: 4px solid var(--blue);
+}
 
-/* Stîlê Konteynera Grafî */
+.stat-card.paid-count {
+    border-bottom: 4px solid var(--yellow);
+}
+
+.icon-container { 
+    color: white;
+}
+
 .chart-container {
     background-color: var(--primary);
     padding: 20px;
@@ -1815,8 +1802,6 @@ main.container {
     flex-grow: 1;
     border: 1px solid var(--border-color);
 }
-
-/* ========== (MODERN) Pagination ========== */
 
 .pagination-container {
     display: flex;
@@ -1901,8 +1886,6 @@ main.container {
     width: 100%;
 }
 
-/* Stîlên Rêza Fîlteran */
-
 .filter-buttons-new {
     display: flex;
     gap: 0.75rem; 
@@ -1959,8 +1942,6 @@ main.container {
 .export-btn-new:hover {
     background-color: #9b59b6;
 }
-
-/* Stîlên Rêza Lêgerînê */
 
 .search-container-new {
     position: relative;
@@ -2082,9 +2063,6 @@ main.container {
     right: auto;
 } 
 
-/* ================================================ */
-
-
 .controls-container-new {
     display: flex;
     flex-direction: column;
@@ -2122,10 +2100,6 @@ main.container {
     color: var(--text-dark);
 }
 
-/* ================================================= */
-/* ==== ستایلێن ڕاستکری بۆ دیزاینا ئێک ڕێزی ====== */
-/* ================================================= */
-
 .controls-container-final {
     display: flex;
     flex-direction: column;
@@ -2133,7 +2107,6 @@ main.container {
     margin-bottom: 1.5rem;
 }
 
-/* Rêza Fîlteran */
 .filter-buttons-final {
     display: flex;
     background-color: var(--primary);
@@ -2157,15 +2130,13 @@ main.container {
     color: white;
 }
 
-/* Rêza دوکمان (Ev beşa herî giring e) */
 .action-buttons-row-final {
     display: flex;
-    justify-content: space-between; /* Ev hêmanan belav diket (rast, navîn, çep) */
+    justify-content: space-between;
     align-items: center;
     gap: 1rem;
 }
 
-/* دوکما PDF */
 .export-btn-final {
     background-color: #e83e8c;
     color: white;
@@ -2177,7 +2148,6 @@ main.container {
     font-size: 0.95rem;
 }
 
-/* لیستا ڕیزکرنێ */
 .sort-container-final {
     display: flex;
     align-items: center;
@@ -2196,7 +2166,6 @@ main.container {
     cursor: pointer;
 }
 
-/* Rêza Lêgerînê */
 .search-container-final {
     position: relative;
     width: 100%;
@@ -2218,40 +2187,43 @@ main.container {
     color: var(--text-dark);
 }
 
-
-
-/* Test */
-
-/* ================================================= */
-/* ===== چارەسەریا ڕیسپۆنسیڤ یا دوماهیێ و مسۆگەر ===== */
-/* ================================================= */
-
-/* Ev ستایلە دێ بتنێ ل سەر شاشێن ژ 768px بچووکتر کار کەن */
 @media (max-width: 768px) {
-
-    /* Em rêza serekî ya دوکمان دکەینە ئێک ستوون */
     .action-row-grid-solution {
-        grid-template-columns: 1fr; /* Em دکەینە tenê ئێک ستوون */
-        gap: 0.8rem; /* Navbera hêmanan */
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
     }
 
-    /* Em hemî hêmanên دناڤ grid'ê دا (دوکمە و لیست) دکەینە full-width */
     .action-add-solution,
     .export-btn-solution,
     .sort-container-solution {
-        justify-self: stretch; /* Ev hêmanan dikişîne da ku stûnê tije bikin */
+        justify-self: stretch;
     }
 
-    /* Em دوکما "زێدەکرن" و "PDF" دکەینە ناڤەراست */
     .action-add-solution,
     .export-btn-solution {
         text-align: center;
     }
     
-    /* Em label û select'a "Rêzkirin"ێ ji hev dûr دکەین da ku جوان دیار بن */
     .sort-container-solution {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .print-container, .print-container * {
+    visibility: visible;
+  }
+
+  .print-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
 }

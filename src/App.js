@@ -1,14 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import html2pdf from 'html2pdf.js';
 import './App.css';
-
-// Importkirina servîs û utilîtyan
 import { saveTomar, deleteTomar, payFull, addPartialPayment } from './services/firebaseService';
-import { exportToPDF } from './utils/pdfGenerator';
-
-// Importkirina hooka تایبەت
 import { useTomaran } from './hooks/useTomaran';
-
-// Importkirina Hemû Komponentan
 import Controls from './components/Controls';
 import TomaranList from './components/TomaranList';
 import FormModal from './components/FormModal';
@@ -16,11 +10,10 @@ import WeneModal from './components/WeneModal';
 import PartialPayModal from './components/PartialPayModal';
 import Dashboard from './components/Dashboard';
 import Pagination from './components/Pagination';
-
+import ReportTemplate from './components/ReportTemplate';
 const ITEMS_PER_PAGE = 12;
 
 function App() {
-    // Hooka سەرەکی کو لۆجیکێ داتایان ب رێڤە دبەت
     const {
         tomaran, filteredTomaran, isLoading,
         searchTerm, setSearchTerm,
@@ -29,7 +22,6 @@ function App() {
         fetchTomaran
     } = useTomaran();
     
-    // Statên تایبەت ب UI و Modalan
     const [currentPage, setCurrentPage] = useState(1);
     const [isFormModalOpen, setIsFormModalOpen] = useState(false);
     const [weneToShow, setWeneToShow] = useState(null);
@@ -37,11 +29,33 @@ function App() {
     const [selectedTomar, setSelectedTomar] = useState(null);
     const [editingTomar, setEditingTomar] = useState(null);
 
-    // -- Handlers (فەنکشنێن کونترۆلکرنێ) --
+
+    const reportComponentRef = useRef();
+
+    const handleGeneratePDF = () => {
+        if (filteredTomaran.length === 0) {
+            alert("هیچ تۆمارەک نینە بۆ دروستکرنا PDF!");
+            return;
+        }
+
+        const element = reportComponentRef.current;
+        const today = new Date();
+        const dateStr = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+        
+        const opt = {
+          margin:       0.5,
+          filename:     `Raporta-Tomaran-${dateStr}.pdf`,
+          image:        { type: 'jpeg', quality: 0.98 },
+          html2canvas:  { scale: 2 },
+          jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+
+        html2pdf().from(element).set(opt).save();
+    };
 
     const handleSave = async (tomarData, id) => {
         await saveTomar(tomarData, id);
-        await fetchTomaran(); // نووکرنا لیستی
+        await fetchTomaran();
     };
 
     const handleDelete = async (id) => {
@@ -64,7 +78,6 @@ function App() {
         await fetchTomaran();
     };
 
-    // Pagination Logic
     const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
     const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
     const currentItems = filteredTomaran.slice(indexOfFirstItem, indexOfLastItem);
@@ -82,7 +95,7 @@ function App() {
                     onFilterChange={setActiveFilter}
                     activeSort={activeSort}
                     onSortChange={setActiveSort}
-                    onExportPDF={() => exportToPDF(filteredTomaran)}
+                    onGeneratePDF={handleGeneratePDF}
                     onAddNew={() => { setEditingTomar(null); setIsFormModalOpen(true); }}
                 />
 
@@ -106,7 +119,6 @@ function App() {
                 {!isLoading && tomaran.length > 0 && <Dashboard tomaran={tomaran} />}
             </main>
             
-            {/* -- Modals -- */}
             <FormModal 
                 isOpen={isFormModalOpen} 
                 onClose={() => setIsFormModalOpen(false)} 
@@ -125,6 +137,10 @@ function App() {
                     onSubmit={handlePartialPaymentSubmit} 
                 />
             )}
+
+            <div style={{ position: 'absolute', left: '-9999px' }}>
+                <ReportTemplate ref={reportComponentRef} tomaran={filteredTomaran} />
+            </div>
         </>
     );
 }
