@@ -86,7 +86,7 @@ function App() {
         <>
             <header className="app-header"><h1>سیستەمێ فرۆتنێ</h1></header>
             
-            <main className="container">
+            <main className="main-container">
                 <Controls
                     searchTerm={searchTerm}
                     onSearchChange={(e) => setSearchTerm(e.target.value)}

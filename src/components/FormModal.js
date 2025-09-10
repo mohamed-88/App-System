@@ -77,7 +77,7 @@ function FormModal({ isOpen, onClose, onSave, editingTomar }) {
         <div className="modal active">
             <div className="modal-content">
                 <span className="close-modal" onClick={onClose}>&times;</span>
-                <h2>{editingTomar ? 'دەستکاریکرنا تۆمارێ' : 'زێدەکرنا تۆمارەکا نوو'}</h2>
+                <h2 align="center">{editingTomar ? 'دەستکاریکرنا تۆمارێ' : 'زێدەکرنا تۆمارەکا نوو'}</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="input-group"><label>ناڤێ کڕیاری:</label><input type="text" name="nav" value={currentData.nav || ''} onChange={handleChange} required /></div>
                     <div className="input-group"><label>رەقەم تەلەفۆن:</label><input type="tel" name="telefon" value={currentData.telefon || ''} onChange={handleChange} /></div>

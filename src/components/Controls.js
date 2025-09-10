@@ -21,9 +21,10 @@ const Controls = ({
                     + زێدەکرنا تۆمارێ
                 </button>
                 
-                <button className="export-btn-final" onClick={onGeneratePDF} style={{ fontSize: '11px' }}>
+                <button className="btn export-btn-final" onClick={onGeneratePDF} style={{ fontSize: '11px' }}>
                     PDF
                 </button>
+
 
                 <div className="sort-container-final" style={{ fontSize: '11px' }}>
                     <label htmlFor="sort-select">ڕیزکرن لدیڤ:</label>
