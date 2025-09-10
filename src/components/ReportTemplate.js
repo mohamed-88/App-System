@@ -12,7 +12,7 @@ const ReportTemplate = React.forwardRef(({ tomaran }, ref) => {
     const dateStr = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
 
     return (
-        <div ref={ref} style={{ padding: '20px', direction: 'rtl', fontFamily: 'Arial, sans-serif' }}>
+        <div ref={ref} style={{ padding: '20px', direction: 'rtl', fontFamily: 'Arial, sans-serif'}}>
             
             <style>
                 {`
@@ -20,7 +20,7 @@ const ReportTemplate = React.forwardRef(({ tomaran }, ref) => {
                         color: black !important;
                         border: 1px solid #424242;
                         padding: 8px;
-                        text-align: right;
+                        text-align: center;
                     }
                     .report-table th {
                         background-color: #2d3436;
@@ -49,15 +49,15 @@ const ReportTemplate = React.forwardRef(({ tomaran }, ref) => {
             <table className="report-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '10px', marginTop: '20px' }}>
                 <thead>
                     <tr>
-                        <th>ناوی کڕیار</th>
-                        <th>تەلەفۆن</th>
-                        <th>کود کاڵا</th>
-                        <th>پارچە</th>
-                        <th>جهـ</th>
-                        <th className="center-align">سایز</th>
-                        <th>بهای گشتی</th>
-                        <th>پارەی دانرا</th>
-                        <th>پارەی مایە</th>
+                        <th style={{ textAlign: 'center' }}>ناڤێ کڕیاری</th>
+                        <th style={{ textAlign: 'center' }}>تەلەفۆن</th>
+                        <th style={{ textAlign: 'center' }}>کودێ برودەکتی</th>
+                        <th style={{ textAlign: 'center' }}>پارچە</th>
+                        <th style={{ textAlign: 'center' }}>جهـ</th>
+                        <th style={{ textAlign: 'center' }} className="center-align">سایز</th>
+                        <th style={{ textAlign: 'center' }}>بهایێ گشتی</th>
+                        <th style={{ textAlign: 'center' }}>پارێ هاتیە دان</th>
+                        <th style={{ textAlign: 'center' }}>پارێ نەهاتیە دان</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,7 +77,7 @@ const ReportTemplate = React.forwardRef(({ tomaran }, ref) => {
                 </tbody>
                 <tfoot>
                     <tr className="report-footer">
-                        <td colSpan="6" className="center-align">کۆی گشتی</td>
+                        <td colSpan="6" className="center-align">کوژمێ گشتی</td>
                         <td>{totalBuha.toLocaleString()}</td>
                         <td>{totalPareDan.toLocaleString()}</td>
                         <td>{totalMaye.toLocaleString()}</td>

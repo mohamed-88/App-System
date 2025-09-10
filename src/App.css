@@ -166,6 +166,39 @@ body {
     color: var(--text-dark);
 }
 
+.search-container input:focus + .search-icon { 
+    color: var(--blue);
+}
+
+.search-container input::placeholder { 
+    color: var(--text-dark); opacity: 0.8; 
+}
+
+.clear-search-btn {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #ffffff20;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.clear-search-btn:hover {
+    background-color: var(--secondary);
+    color: white;
+    transform: translateY(-50%) scale(1.1) rotate(90deg);
+}
+
 .cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -188,6 +221,22 @@ body {
     object-fit: cover;
     cursor: pointer;
     background-color: var(--primary);
+}
+
+.wene-modal-img-content {
+    display: block;
+    max-width: 90%;
+    max-height: 85vh;
+    margin: auto;
+    border-radius: 8px;
+}
+
+.modal .wene-modal-img-content + .close-modal {
+    position: fixed;
+    top: 20px;
+    right: 35px;
+    left: auto;
+    color: white;
 }
 
 .card-content {
