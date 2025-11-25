@@ -335,13 +335,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Beşê 7: Lojîka FAQ (Eger di pêşerojê de bê zêdekirin) ---
-    // const faqQuestions = document.querySelectorAll('.faq-question');
-    // faqQuestions.forEach(question => {
-    //     question.addEventListener('click', () => {
-    //         const faqItem = question.closest('.faq-item');
-    //         faqItem.classList.toggle('active');
-    //     });
-    // });
+    // --- Beşê 7: Lojîka Pull-to-Refresh (PTR) ---
+    const ptrIndicator = document.createElement('div');
+    ptrIndicator.id = 'ptr-indicator';
+    ptrIndicator.innerHTML = '<div class="spinner"></div>';
+    document.body.prepend(ptrIndicator);
+
+    let startY = 0;
+    let isTouching = false;
+    const threshold = 60; // Pîkselên ku divê bikarhêner bikişîne
+    const maxPull = 120; // Herî zêde pîkselên ku dikarin werin kişandin
+
+    const handleTouchStart = (e) => {
+        // Tenê dema ku li serê laş be û scroll li 0 be
+        if (window.scrollY === 0) {
+            startY = e.touches[0].clientY;
+            isTouching = true;
+        }
+    };
+
+    const handleTouchMove = (e) => {
+        if (!isTouching) return;
+
+        const currentY = e.touches[0].clientY;
+        let pullDistance = currentY - startY;
+
+        if (pullDistance > 0) {
+            e.preventDefault(); // Rê li ber scrollkirina standard digire
+            pullDistance = Math.min(pullDistance, maxPull);
+            
+            // Indicator nîşan dide
+            ptrIndicator.style.height = `${pullDistance * 0.5}px`; // Nîvê kişandinê nîşan dide
+            
+            if (pullDistance > threshold) {
+                ptrIndicator.classList.add('active');
+            } else {
+                ptrIndicator.classList.remove('active');
+            }
+        } else {
+            // Eger ber bi jor ve bikişîne, divê scrollkirin normal be
+            isTouching = false;
+        }
+    };
+
+    const handleTouchEnd = () => {
+        if (!isTouching) return;
+        isTouching = false;
+
+        const pullDistance = parseInt(ptrIndicator.style.height.replace('px', '')) * 2; // Vegerandina dûrahiya rastîn
+
+        if (pullDistance >= threshold) {
+            // Refresh dike
+            ptrIndicator.style.height = '50px'; // Indicator li cîhê xwe digire
+            ptrIndicator.classList.add('active');
+            
+            // Fenkşena Refresh
+            setTimeout(() => {
+                window.location.reload();
+            }, 500); // Piştî nîv çirkeyê refresh dike
+        } else {
+            // Vegere rewşa destpêkê
+            ptrIndicator.style.height = '0';
+            ptrIndicator.classList.remove('active');
+        }
+    };
+
+    document.addEventListener('touchstart', handleTouchStart, { passive: false });
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+    document.addEventListener('touchend', handleTouchEnd);
 
 });
